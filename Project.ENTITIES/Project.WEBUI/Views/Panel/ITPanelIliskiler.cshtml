@@ -1,0 +1,535 @@
+﻿@model IndexVM
+@{
+    ViewBag.Title = "ITPanelIliskiler";
+}
+
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<script language="JavaScript" type="text/javascript" src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="~/Scripts/jquery-ui-1.13.2.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<style>
+    body {
+        position: relative;
+        min-height: 100vh;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 65px;
+        background: #11101d;
+        padding: 6px 12px;
+        transition: all 0.5s ease;
+    }
+
+        .sidebar.active {
+            width: 240px
+        }
+
+        .sidebar .logo_content .logo {
+            color: #fff;
+            display: flex;
+            height: 50px;
+            width: 100%;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar.active .logo_content .logo {
+            opacity: 1;
+            pointer-events: none;
+        }
+
+    .logo_content .logo i {
+        font-size: 28px;
+        margin-right: 10px;
+    }
+
+    .logo_content .logo .logo_name {
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+    .sidebar #btn {
+        position: absolute;
+        color: #fff;
+        left: 44%;
+        top: 6px;
+        font-size: 20px;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        line-height: 50px;
+        transform: translateX(-50%);
+    }
+
+    .sidebar.active #btn {
+        left: 90%;
+    }
+
+    .sidebar ul {
+        margin-top: 20px;
+    }
+
+        .sidebar ul li {
+            position: relative;
+            height: 50px;
+            width: 100%;
+            margin: 0 -40px 10px;
+            list-style: none;
+            line-height: 50px;
+        }
+
+            .sidebar ul li a {
+                color: #fff;
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                width: 550%;
+                transition: all 0.4s ease;
+                border-radius: 12px;
+                white-space: nowrap;
+            }
+
+                .sidebar ul li a:hover {
+                    color: #11101d;
+                    background: #fff;
+                }
+
+    .sidebar_ul_li_a {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        width: 550%;
+        transition: all 0.4s ease;
+        border-radius: 12px;
+        white-space: nowrap;
+    }
+
+        .sidebar_ul_li_a:hover {
+            color: #11101d;
+            background: #fff;
+        }
+
+    .sidebar ul li i {
+        height: 50px;
+        min-width: 50px;
+        border-radius: 12px;
+        line-height: 50px;
+        text-align: center;
+    }
+
+    .sidebar_ul_li_i {
+        height: 50px;
+        min-width: 50px;
+        border-radius: 12px;
+        line-height: 50px;
+        text-align: center;
+    }
+
+    .sidebar .links_name {
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.5s ease;
+    }
+
+    .sidebar.active .links_name {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .sidebar .profile_content {
+        position: absolute;
+        color: #fff;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
+
+        .sidebar .profile_content .profile {
+            position: relative;
+            padding: 10px 6px;
+            height: 80px;
+            background-color: #1d1b31;
+            transition: all 0.5s ease;
+        }
+
+    .sidebar.active .profile_content .profile {
+        background: none;
+    }
+
+    .profile_content .profile .profile_details {
+        display: flex;
+        align-items: center;
+        opacity: 0;
+        pointer-events: auto;
+        transition: all 0.5s ease;
+        white-space: nowrap;
+    }
+
+    .sidebar.active .profile .profile_details {
+        opacity: 1;
+        pointer-events: auto;
+        white-space: nowrap;
+    }
+
+    .profile .profile_details .name_job {
+        margin-left: 10px;
+    }
+
+    .profile .profile_details .name {
+        font-size: 15px;
+        font-weight: 400;
+    }
+
+    .profile .profile_details .job {
+        font-size: 12px;
+    }
+
+    .profile #log_out {
+        position: absolute;
+        bottom: 39px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding-left: 5px;
+        min-width: 35px;
+        line-height: 30px;
+        font-size: 20px;
+        border-radius: 8px;
+        transition: all 0.5s ease;
+        background: #1d1b31;
+    }
+
+    .sidebar.active .profile #log_out {
+        left: 83%;
+    }
+
+    .profile #log_out:hover {
+        background-color: #808080;
+        transition: all 0.4s ease;
+    }
+
+    .home_content {
+        position: absolute;
+        height: 100%;
+        width: calc(100%-78px);
+        left: 78px;
+        transition: all 0.5s ease;
+    }
+
+        .home_content .text {
+            font-size: 25px;
+            font-weight: 500;
+            color: #1d1b31;
+            margin: 12px;
+        }
+
+    .sidebar.active ~ .home_content {
+        width: calc(100%-260px);
+        left: 260px;
+    }
+
+    .horizontal-line {
+        display: inline-block
+    }
+
+    .interaction-bar {
+        min-height: 50px;
+        margin-top: 20px;
+        border-radius: 10px;
+        background-color: #E7E9EB;
+    }
+
+    .iliskiIcon{
+        margin:10px;
+        font-size:2rem;
+    }
+
+    .iliskiLabel{
+        margin-left:10px;
+        font-size:2rem;
+        font-weight:bold;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap
+    }
+
+    th {
+        border-right: 1px solid grey;
+        color: black;
+    }
+
+    .table {
+        padding-top: 20px;
+    }
+
+    .custom-alert {
+        position: fixed;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tables{
+        position:relative;
+    }
+
+    .envanter {
+        display: inline-block;
+        width: 600px;
+        min-height: 400px;
+        position: fixed;
+
+    }
+
+    .baglienvanter {
+        width: 700px;
+        
+    }
+
+    .tumenvanter {
+        left: 800px;
+    }
+
+    .tablelabel {
+        font-size: 1.5rem;
+        font-weight:500;
+    }
+
+    .tablo th{
+        background-color: goldenrod;
+        color:white;
+    }
+
+    .tablo td,
+    .tablo th {
+        padding: 10px;
+        border: 1px solid goldenrod;
+    }
+
+    .iliskiButton {
+        border: none;
+        background-color: white;
+    }
+
+    .tablo tr:hover .iliskiButton {
+        box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+    }
+
+</style>
+
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{
+
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class='bx bxl-codepen'></i>
+                <div class="logo_name">CAVO</div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li>
+                <a href="#">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="~/Panel/ITPanelEnvanter">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Envanter</span>
+                </a>
+            </li>
+            <li>
+                <a href="~/Panel/ITPanelHareketler">
+                    <i class='bx bx-transfer'></i>
+                    <span class="links_name">Hareketler</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxl-xing'></i>
+                    <span class="links_name">İlişkiler</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-folder'></i>
+                    <span class="links_name">Ek Belgeler</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-wrench'></i>
+                    <span class="links_name">Onarım</span>
+                </a>
+            </li>
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <div class="name_job">
+                        <div class="name">
+                            @if (@Session["LoggedPersonelName"] == null)
+                            {
+
+                            }
+                            else
+                            {
+                                @Session["LoggedPersonelName"].ToString()
+                            }
+                        </div>
+                        <div class="job">
+                            @if (@Session["LoggedPersonelPosition"] == null)
+                            {
+
+                            }
+                            else
+                            {
+                                @Session["LoggedPersonelPosition"].ToString()
+                            }
+                        </div>
+                    </div>
+                </div>
+                <a href="/Home/Login">
+                    <i class='bx bx-log-out' id="log_out"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="home_content container">
+        <div>
+            <h1>
+                <img src="~/img/gift.png" style="max-width: 50px" />
+                Envanter Yönetimi Demirbaş İlişkilendirme
+            </h1>
+        </div>
+        <div>
+            <div class="horizontal-line">
+                Zimmet Tipi
+                @Html.TextBoxFor(x => x.Esya.ZimmetTip.ZimmetTipi, new { @class = "form-control", @readonly = true })
+            </div>
+            <div class="horizontal-line">
+                Firma
+                @Html.TextBoxFor(x => x.Esya.Sirket.SirketAdi, new { @class = "form-control", @readonly = true })
+            </div>
+            <div class="horizontal-line">
+                Demirbaş
+                @Html.TextBoxFor(x => x.Esya.DemirbasNo, new { @class = "form-control", @readonly = true })
+            </div>
+            <div class="horizontal-line">
+                Açıklama
+                @Html.TextBoxFor(x => x.Esya.DemirbasAdi, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        <div class="interaction-bar">
+            <i class='bx bx-reflect-vertical iliskiIcon'></i>
+            <label class="iliskiLabel">
+                 İlişki
+            </label>
+        </div>
+        <div class="tables">
+            <div class="baglienvanter envanter">
+               <div class="table inventory" id="baglidemirbaslar" name="baglidemirbaslar">
+                   <label class="tablelabel">
+                       Demirbaş'a Bağlı Malzemeler
+                   </label>
+                   <table class="tablo table table-hover">
+                       <thead>
+                           <tr>
+                               <th>Zimmet Tipi</th>
+                               <th>Tip Açıklaması</th>
+                               <th>Bağlı Malzeme</th>
+                               <th>Malzeme Açıklaması</th>
+                               <th>Seri No</th>
+                               <th></th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           @foreach (Esya item in Model.Esyalar.Where(x => x.BagliEsyaID == Convert.ToInt32(Session["bagliEsyaID"].ToString())))
+                           {
+                               <tr>
+                                   <td>@item.ZimmetTip.ZimmetTipi</td>
+                                   <td>@item.ZimmetTip.Aciklama</td>
+                                   <td>@item.DemirbasNo</td>
+                                   <td>@item.Marka</td>
+                                   <td>@item.SeriNo</td>
+                                   <td>
+                                       <button class="iliskiButton" name="demirbasID" value="@item.ID">
+                                           <i class='bx bxs-right-arrow'></i>
+                                       </button>
+                                   </td>
+                               </tr>
+                           }
+                       </tbody>
+                   </table>
+               </div>
+            </div>
+
+            <div class="tumenvanter envanter">
+                <div class="table inventory" id="inventory" name="inventory">
+                    <label class="tablelabel">
+                        Tüm Malzemeler
+                    </label>
+                    <table class="tablo table table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Zimmet Tipi</th>
+                                <th>Tip Açıklaması</th>
+                                <th>Malzeme Açıklaması</th>
+                                <th>Seri No</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Esya item in Model.Esyalar.Where(x => x.BagliEsyaID == null))
+                            {
+                                <tr>
+                                    <td>
+                                        <button class="iliskiButton" name="demirbasID" value="@item.ID">
+                                            <i class='bx bxs-left-arrow' style="border-radius:10px;"></i>
+                                        </button>
+                                    </td>
+                                    <td>@item.ZimmetTip.ZimmetTipi</td>
+                                    <td>@item.ZimmetTip.Aciklama</td>
+                                    <td>@item.Marka</td>
+                                    <td>@item.SeriNo</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+}
+
+<script>
+
+    let btn = document.querySelector("#btn");
+    let sidebar = document.querySelector(".sidebar");
+
+    btn.onclick = function () {
+        sidebar.classList.toggle("active");
+    };
+
+
+</script>
+
+

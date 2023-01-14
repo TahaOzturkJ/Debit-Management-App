@@ -1,0 +1,15 @@
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.MAP\bin\Release\Project.MAP.dll.config
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.MAP\bin\Release\Project.MAP.dll
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.MAP\bin\Release\Project.MAP.pdb
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.MAP\bin\Release\EntityFramework.dll
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.MAP\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.MAP\bin\Release\Project.ENTITIES.dll
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.MAP\bin\Release\Project.ENTITIES.pdb
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.MAP\bin\Release\Project.ENTITIES.dll.config
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.MAP\bin\Release\EntityFramework.xml
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.MAP\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.MAP\obj\Release\Project.MAP.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.MAP\obj\Release\Project.MAP.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.MAP\obj\Release\Project.MAP.csproj.CopyComplete
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.MAP\obj\Release\Project.MAP.dll
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.MAP\obj\Release\Project.MAP.pdb

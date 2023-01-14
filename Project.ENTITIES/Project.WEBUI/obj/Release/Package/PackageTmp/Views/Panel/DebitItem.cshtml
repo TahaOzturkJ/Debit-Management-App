@@ -1,0 +1,116 @@
+﻿@model IndexVM
+@{
+    ViewBag.Title = "DebitItem";
+}
+
+
+<div class="panel panel-primary">
+    @using (Html.BeginForm("DebitItem", "Panel", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.Esya.ID)
+    <div>
+        Planlanan Zimmet Tarihi <input type="date" name="planlananzimmet" id="planlananzimmet" class="form-control" />
+        Planlanan İade Tarihi <input type="date" name="planlananiade" id="planlananiade" class="form-control" />
+    </div>
+
+        <br/>
+        <div>
+            Personel @Html.DropDownListFor(x => x.Esya.PersonelID, new SelectList(ViewBag.personelData, "ID", "AdSoyad"), new { @class = "form-control" })
+        </div>
+        <br />
+        <table style="display:none">
+            <tr>
+                <th>Genel</th>
+                <th>Lisanslar</th>
+            </tr>
+            <tr>
+                <td class="td1">
+
+                    <div id="div1">
+                        <div class="label">
+                            <label>Takma Ad</label>
+                            <label>Marka/Model</label>
+                            <label>Seri No</label>
+                            <label>CPU</label>
+                            <label>RAM</label>
+                            <label>RAM Slot</label>
+                            <label>Anakart</label>
+                            <label>Disk Tipi</label>
+                            <label>Disk Kapasitesi</label>
+                            <label>Ekran</label>
+                            <label>IP</label>
+                            <label>Mac Eth</label>
+                            <label>Mac WiFi</label>
+                        </div>
+                        <div class="input">
+                            @Html.TextBoxFor(x => x.Esya.TakmaAd, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.Marka, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.SeriNo, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.CPU, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.Ram, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.RamSlot, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.Anakart, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.DiskTipi, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.DiskKapasitesi, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.Ekran, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.IP, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.MacETH, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.MacWiFi, new { @class = "form-control" })
+                        </div>
+
+                    </div>
+
+                    <div id="div1">
+                        <div class="label">
+                            <label>Eşya Açıklaması</label>
+                            <label>Demirbaş No</label>
+                            <label>Zimmet Tipi</label>
+                            <label>DemirbasAdi</label>
+                            <label>IMEI Numarası</label>
+                            <label>Garanti Başlangıç Tarihi</label>
+                            <label>Garanti Bitiş Tarihi</label>
+                            <label>Bedeli</label>
+                            <label>Para Birimi</label>
+                            <label>Fatura No</label>
+                            <label>Fatura Tarihi</label>
+                        </div>
+                        <div class="input">
+                            @Html.TextBoxFor(x => x.Esya.TipAciklamasi, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.DemirbasNo, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.ZimmetTipi, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.DemirbasAdi, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.IMEI, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.GarantiBaslangicTarihi, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.GarantiBitisTarihi, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.Bedel, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.ParaBirimi, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.FaturaNo, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.FaturaTarihi, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div id="div1">
+                        <div class="label">
+                            <label>İşletim Sistemi</label>
+                            <label>Office Lisansları</label>
+                            <label>AntiVirüs</label>
+                            <label>Diğer Lisanslar</label>
+                        </div>
+                        <div class="input">
+                            @Html.TextBoxFor(x => x.Esya.IsletimSistemi, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.OfficeLisanslari, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.AntiVirus, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.DigerLisanslar, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <br />
+        <button class="btn btn-outline-warning btn-lg btn-block">Eşyayı Zimmetle</button>
+        <br />
+    }
+</div>
+

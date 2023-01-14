@@ -1,0 +1,420 @@
+﻿@model IndexVM
+@{
+    ViewBag.Title = "ITPanelHareketler";
+}
+
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<style>
+    body {
+        position: relative;
+        min-height: 100vh;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 65px;
+        background: #11101d;
+        padding: 6px 12px;
+        transition: all 0.5s ease;
+    }
+
+        .sidebar.active {
+            width: 240px
+        }
+
+        .sidebar .logo_content .logo {
+            color: #fff;
+            display: flex;
+            height: 50px;
+            width: 100%;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar.active .logo_content .logo {
+            opacity: 1;
+            pointer-events: none;
+        }
+
+    .logo_content .logo i {
+        font-size: 28px;
+        margin-right: 10px;
+    }
+
+    .logo_content .logo .logo_name {
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+    .sidebar #btn {
+        position: absolute;
+        color: #fff;
+        left: 44%;
+        top: 6px;
+        font-size: 20px;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        line-height: 50px;
+        transform: translateX(-50%);
+    }
+
+    .sidebar.active #btn {
+        left: 90%;
+    }
+
+    .sidebar ul {
+        margin-top: 20px;
+    }
+
+        .sidebar ul li {
+            position: relative;
+            height: 50px;
+            width: 100%;
+            margin: 0 -40px 10px;
+            list-style: none;
+            line-height: 50px;
+        }
+
+            .sidebar ul li .tooltip {
+                position: absolute;
+                left: 122px;
+                top: 25px;
+                transform: translate(-30%, -50%);
+                border-radius: 6px;
+                height: 35px;
+                width: 122px;
+                background: #fff;
+                line-height: 35px;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                transition: 0s;
+                opacity: 0;
+                pointer-events: none;
+                display: block;
+            }
+
+    .sidebar.active ul li .tooltip {
+        display: none;
+    }
+
+    .sidebar ul li:hover .tooltip {
+        transition: all 0.5s ease;
+        opacity: 1;
+        top: 50%
+    }
+
+    .sidebar ul li a {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        width: 550%;
+        transition: all 0.4s ease;
+        border-radius: 12px;
+        white-space: nowrap;
+    }
+
+        .sidebar ul li a:hover {
+            color: #11101d;
+            background: #fff;
+        }
+
+    .sidebar ul li i {
+        height: 50px;
+        min-width: 50px;
+        border-radius: 12px;
+        line-height: 50px;
+        text-align: center;
+    }
+
+    .sidebar .links_name {
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.5s ease;
+    }
+
+    .sidebar.active .links_name {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .sidebar .profile_content {
+        position: absolute;
+        color: #fff;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
+
+        .sidebar .profile_content .profile {
+            position: relative;
+            padding: 10px 6px;
+            height: 80px;
+            background-color: #1d1b31;
+            transition: all 0.5s ease;
+        }
+
+    .sidebar.active .profile_content .profile {
+        background: none;
+    }
+
+    .profile_content .profile .profile_details {
+        display: flex;
+        align-items: center;
+        opacity: 0;
+        pointer-events: auto;
+        transition: all 0.5s ease;
+        white-space: nowrap;
+    }
+
+    .sidebar.active .profile .profile_details {
+        opacity: 1;
+        pointer-events: auto;
+        white-space: nowrap;
+    }
+
+    .profile .profile_details .name_job {
+        margin-left: 10px;
+    }
+
+    .profile .profile_details .name {
+        font-size: 15px;
+        font-weight: 400;
+    }
+
+    .profile .profile_details .job {
+        font-size: 12px;
+    }
+
+    .profile #log_out {
+        position: absolute;
+        bottom: 39px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding-left: 5px;
+        min-width: 35px;
+        line-height: 30px;
+        font-size: 20px;
+        border-radius: 8px;
+        transition: all 0.5s ease;
+        background: #1d1b31;
+    }
+
+    .sidebar.active .profile #log_out {
+        left: 83%;
+    }
+
+    .profile #log_out:hover {
+        background-color: #808080;
+        transition: all 0.4s ease;
+    }
+
+    .home_content {
+        position: absolute;
+        height: 100%;
+        width: calc(100%-78px);
+        left: 78px;
+        transition: all 0.5s ease;
+    }
+
+        .home_content .text {
+            font-size: 25px;
+            font-weight: 500;
+            color: #1d1b31;
+            margin: 12px;
+        }
+
+    .sidebar.active ~ .home_content {
+        width: calc(100%-260px);
+        left: 260px;
+    }
+
+    .horizontal-line {
+        display: inline-block
+    }
+
+    .interaction-bar {
+        margin-top: 20px;
+        border-radius: 10px;
+        background-color: #E7E9EB;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap
+    }
+
+    th {
+        border-right: 1px solid grey;
+        color: black;
+    }
+
+    .table {
+        padding-top: 20px;
+    }
+
+</style>
+
+@using (Html.BeginForm(null, null, FormMethod.Post))
+{
+
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class='bx bxl-codepen'></i>
+                <div class="logo_name">CAVO</div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li>
+                <a href="#">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="ITPanelEnvanter">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Envanter</span>
+                </a>
+            </li>
+            <li>
+                <a href="ITPanelHareketler">
+                    <i class='bx bx-transfer'></i>
+                    <span class="links_name">Hareketler</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bxl-xing'></i>
+                    <span class="links_name">İlişkiler</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-folder'></i>
+                    <span class="links_name">Ek Belgeler</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-wrench'></i>
+                    <span class="links_name">Onarım</span>
+                </a>
+            </li>
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <div class="name_job">
+                        <div class="name">
+                            Taha Öztürk
+                        </div>
+                        <div class="job">
+                            Back-end Developer
+                        </div>
+                    </div>
+                </div>
+                <a href="/Home/Login">
+                    <i class='bx bx-log-out' id="log_out"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="home_content container">
+        <div>
+            <h1>
+                <img src="~/img/gift.png" style="max-width: 50px" />
+                Personel Envanter Hareket Yönetimi
+            </h1>
+            <br />
+            <br />
+        </div>
+        <div>
+            <div class="horizontal-line">
+                Demirbaş
+                <input type="text" name="demirbas" id="demirbas" class="form-control" />
+            </div>
+            <div class="horizontal-line">
+                Sicil No
+                <input type="text" name="sicilno" id="sicilno" class="form-control" />
+            </div>
+            <div class="horizontal-line">
+                Açıklama
+                <input type="text" name="aciklama" id="aciklama" class="form-control" />
+            </div>
+            <div class="horizontal-line">
+                Personel
+                <input type="text" name="personel" id="personel" class="form-control" />
+            </div>
+            <div class="horizontal-line">
+                Marka/Model
+                <input type="text" name="markamodel" id="markamodel" class="form-control" />
+            </div>
+        </div>
+        <div class="interaction-bar">
+            <button class="btn"><img src="~/img/loupe.png" style="max-width: 30px; display: inline-block" /></button>
+        </div>
+
+
+        <div class="table" name="itemmovement">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>İşlem</th>
+                        <th>Yön</th>
+                        <th>Demirbaş No.</th>
+                        <th>Sicil No.</th>
+                        <th>Personel Adı</th>
+                        <th>Açıklama</th>
+                        <th>İşlem Tarihi</th>
+                        <th>Marka/Model</th>
+                        <th>Fatura No</th>
+                        <th>Fatura Tarihi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (EsyaZimmetLog item in Model.EsyaZimmetLoglar)
+                    {
+                        <tr>
+                            <td>@item.IslemTuru</td>
+                            <td>@item.ZimmetYon</td>
+                            <td>@item.Esya.DemirbasNo</td>
+                            <td>@item.Personel.SicilNo</td>
+                            <td>@item.Personel.AdSoyad</td>
+                            <td>@item.Aciklama</td>
+                            <td>@item.IslemTarihi</td>
+                            <td>@item.Esya.Marka</td>
+                            <td>@item.Esya.FaturaNo</td>
+                            <td>@item.Esya.FaturaTarihi</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+<script>
+
+    let btn = document.querySelector("#btn");
+    let sidebar = document.querySelector(".sidebar");
+
+    btn.onclick = function () {
+        sidebar.classList.toggle("active");
+    }
+
+</script>

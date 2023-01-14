@@ -1,0 +1,34 @@
+﻿@model IndexVM
+@{
+    ViewBag.Title = "Login";
+}
+
+@TempData["out"]
+
+<div class="container">
+    @using (Html.BeginForm())
+            {
+                <div>
+                    Isim
+                </div>
+                <div>
+                    @Html.TextBoxFor(x=>x.Kullanici.KullaniciAdi)
+                </div>
+                <div>
+                    Sifre
+                </div>
+                <div>
+                    @Html.PasswordFor(x=>x.Kullanici.Sifre)
+                </div>
+                <br />
+                <h4 style="color:red">@ViewBag.Message</h4>
+                <br />
+                <div>
+                    <button class="btn btn-primary">
+                        Login
+                    </button>
+                    @Html.ActionLink("Register", "Register", null, new { @class = "btn btn-success" , @style = "margin-left: 20px"})
+                </div>
+            }
+</div>
+

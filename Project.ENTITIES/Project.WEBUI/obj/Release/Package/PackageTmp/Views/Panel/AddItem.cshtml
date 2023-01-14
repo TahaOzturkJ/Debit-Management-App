@@ -1,0 +1,202 @@
+﻿@model IndexVM
+@{
+    ViewBag.Title = "AddItem";
+}
+
+<style>
+
+    .container {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        display: flex;
+    }
+
+    #div1,
+    #div2,
+    #div3 {
+        display: flex;
+        /* border: 1px solid red; */
+    }
+
+        #div2 > .input,
+        #div2 > .label {
+            /* justify-content: flex-start; */
+        }
+
+    .label {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /*     height: 100%;
+ */
+    }
+
+    label {
+        margin: 0 1.5rem 0.5rem 0;
+    }
+
+    .input {
+        display: flex;
+        flex-direction: column;
+        line-height: 2rem;
+        justify-content: space-between;
+    }
+
+    #check {
+        position: relative;
+        top: -3.5px;
+        left: -5rem;
+        height: 1.3rem;
+    }
+
+    .top,
+    .bottom {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .div2 > .label {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .div2 > .input {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .td1 {
+        background-color: cadetblue;
+        display: flex;
+    }
+
+    input {
+        margin: 0 0.5rem 0.5rem 0;
+        /* width: 15rem; */
+    }
+
+    label {
+    }
+
+    input {
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td,
+    th {
+        background-color: burlywood;
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+</style>
+
+
+<div class="container" style="margin-top:30px">
+    <div class="panel panel-primary">
+        @using (Html.BeginForm("AddItem", "Panel", FormMethod.Post))
+        {
+            <h1>Envanter Yönetimi Eşya Ekleme</h1>
+            <table>
+                <tr>
+                    <th>Genel</th>
+                    <th>Lisanslar</th>
+                </tr>
+                <tr>
+                    <td class="td1">
+
+                        <div id="div1">
+                            <div class="label">
+                                <label>Takma Ad</label>
+                                <label>Marka/Model</label>
+                                <label>Seri No</label>
+                                <label>CPU</label>
+                                <label>RAM</label>
+                                <label>RAM Slot</label>
+                                <label>Anakart</label>
+                                <label>Disk Tipi</label>
+                                <label>Disk Kapasitesi</label>
+                                <label>Ekran</label>
+                                <label>IP</label>
+                                <label>Mac Eth</label>
+                                <label>Mac WiFi</label>
+                            </div>
+                            <div class="input">
+                                @Html.TextBoxFor(x => x.Esya.TakmaAd, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.Marka, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.SeriNo, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.CPU, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.Ram, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.RamSlot, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.Anakart, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.DiskTipi, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.DiskKapasitesi, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.Ekran, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.IP, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.MacETH, new  {@class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.MacWiFi, new { @class = "form-control" })
+                            </div>
+
+                        </div>
+
+                        <div id="div1">
+                            <div class="label">
+                                <label>Eşya Açıklaması</label>
+                                <label>Demirbaş No</label>
+                                <label>Zimmet Tipi</label>
+                                <label>DemirbasAdi</label>
+                                <label>IMEI Numarası</label>
+                                <label>Garanti Başlangıç Tarihi</label>
+                                <label>Garanti Bitiş Tarihi</label>
+                                <label>Bedeli</label>
+                                <label>Para Birimi</label>
+                                <label>Fatura No</label>
+                                <label>Fatura Tarihi</label>
+                            </div>
+                            <div class="input">
+                                @Html.TextBoxFor(x => x.Esya.TipAciklamasi, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.DemirbasNo, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.ZimmetTipi, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.DemirbasAdi, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.IMEI, new { @class = "form-control" })
+                                <input type="date" name="garantibaslangic" id="garantibaslangic" class="form-control" />
+                                <input type="date" name="garantibitis" id="garantibitis" class="form-control" />
+                                @Html.TextBoxFor(x => x.Esya.Bedel, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.ParaBirimi, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.FaturaNo, new { @class = "form-control" })
+                                <input type="date" name="faturatarihi" id="faturatarihi" class="form-control" />
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div id="div1">
+                            <div class="label">
+                                <label>İşletim Sistemi</label>
+                                <label>Office Lisansları</label>
+                                <label>AntiVirüs</label>
+                                <label>Diğer Lisanslar</label>
+                            </div>
+                            <div class="input">
+                                @Html.TextBoxFor(x => x.Esya.IsletimSistemi, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.OfficeLisanslari, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.AntiVirus, new { @class = "form-control" })
+                                @Html.TextBoxFor(x => x.Esya.DigerLisanslar, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <br />
+            <button class="btn btn-outline-success btn-lg btn-block">Ürün Ekle</button>
+        }
+    </div>
+</div>
+
+
+

@@ -1,0 +1,261 @@
+﻿@model IndexVM
+
+
+
+<style>
+
+    .hidden {
+        display: none;
+    }
+
+    .horizontal-line{
+        display:inline-block;
+    }
+
+</style>
+
+<div class="modal fade" id="addItem">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="addItemLabel">Demirbaş Zimmetleme</h4>
+            </div>
+            <div class="modal-body">
+                <form action="Debit">
+
+                    <div class="hidden">
+
+                        @Html.HiddenFor(x => x.Esya.ID)
+                        @Html.TextBoxFor(x => x.Esya.EsyaDurumu, new { @class = "form-control hidden" })
+                        @Html.TextBoxFor(x => x.Esya.ZimmetTipID, new { @class = "form-control hidden" })
+                        @Html.TextBoxFor(x => x.Esya.BagliEsyaID, new { @class = "form-control hidden" })
+                        @Html.DropDownListFor(x => x.Esya.PersonelID, new SelectList(ViewBag.personelData, "ID", "AdSoyad"), new { @class = "form-control hidden" })
+                        @Html.DropDownListFor(x => x.Esya.SirketID, new SelectList(ViewBag.sirketData, "ID", "SirketAdi"), new { @class = "form-control hidden" })
+                        @Html.TextBoxFor(x => x.Esya.PlanlananZimmetTarihi, new { @class = "form-control hidden" })
+                        @Html.TextBoxFor(x => x.Esya.ZimmetTarihi, new { @class = "form-control hidden" })
+                        @Html.TextBoxFor(x => x.Esya.PlanlananIadeTarihi, new { @class = "form-control hidden" })
+                        @Html.TextBoxFor(x => x.Esya.IadeTarihi, new { @class = "form-control hidden" })
+                        @Html.TextBoxFor(x => x.Esya.YaratilmaTarihi, new { @class = "form-control hidden" })
+                        @Html.TextBoxFor(x => x.Esya.DuzenlenmeTarihi, new { @class = "form-control hidden" })
+                        @Html.TextBoxFor(x => x.Esya.SilinmeTarihi, new { @class = "form-control hidden" })
+                        @Html.TextBoxFor(x => x.Esya.Statu, new { @class = "form-control hidden" })
+
+
+
+
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.TakmaAd, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.TakmaAd, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.Marka, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.Marka, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.SeriNo, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.SeriNo, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.CPU, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.CPU, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.Ram, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.Ram, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.RamSlot, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.RamSlot, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.Anakart, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.Anakart, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.DiskTipi, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.DiskTipi, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.DiskKapasitesi, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.DiskKapasitesi, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.Ekran, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.Ekran, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.IP, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.IP, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.MacETH, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.MacETH, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.MacWiFi, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.MacWiFi, new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.DemirbasNo, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.DemirbasNo, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.DemirbasAdi, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.DemirbasAdi, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.IMEI, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.IMEI, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.GarantiBaslangicTarihi, new { @class = "form-control" })
+                            @{
+                                if (ViewBag.gbtSData != null)
+                                {
+                                    DateTime garantiBaslangictarihi = ViewBag.gbtSData;
+                                    string yilBaslangic = garantiBaslangictarihi.Year.ToString();
+                                    string ayBaslangic = garantiBaslangictarihi.Month.ToString();
+                                    string gunBaslangic = garantiBaslangictarihi.Day.ToString();
+
+                                    if (Convert.ToInt32(ayBaslangic) < 10)
+                                    {
+                                        ayBaslangic = "0" + ayBaslangic;
+                                    }
+
+                                    if (Convert.ToInt32(gunBaslangic) < 10)
+                                    {
+                                        gunBaslangic = "0" + gunBaslangic;
+                                    }
+
+                                    string dateBaslangic = yilBaslangic + "-" + ayBaslangic + "-" + gunBaslangic;
+
+                                    <input type="date" name="garantibaslangic" id="garantibaslangic" class="form-control" value="@(dateBaslangic)" />
+
+                                }
+                                else
+                                {
+                                    <input type="date" name="garantibaslangic" id="garantibaslangic" class="form-control" />
+
+                                }
+                            }
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.GarantiBitisTarihi, new { @class = "form-control" })
+                            @{
+
+                                if (ViewBag.gbtEData != null)
+                                {
+                                    DateTime garantiBitisTarihi = ViewBag.gbtEData;
+                                    string yilBitis = garantiBitisTarihi.Year.ToString();
+                                    string ayBitis = garantiBitisTarihi.Month.ToString();
+                                    string gunBitis = garantiBitisTarihi.Day.ToString();
+
+                                    if (Convert.ToInt32(ayBitis) < 10)
+                                    {
+                                        ayBitis = "0" + ayBitis;
+                                    }
+
+                                    if (Convert.ToInt32(gunBitis) < 10)
+                                    {
+                                        gunBitis = "0" + gunBitis;
+                                    }
+
+                                    string dateBitis = yilBitis + "-" + ayBitis + "-" + gunBitis;
+
+                                    <input type="date" name="garantibitis" id="garantibitis" class="form-control" value="@(dateBitis)" />
+                                }
+                                else
+                                {
+                                    <input type="date" name="garantibitis" id="garantibitis" class="form-control" />
+                                }
+
+                            }
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.Bedel, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.Bedel, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.ParaBirimi, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.ParaBirimi, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.FaturaNo, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.FaturaNo, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group horizontal-line">
+                            @Html.LabelFor(x => x.Esya.FaturaTarihi, new { @class = "form-control" })
+
+                            @{
+                                if (ViewBag.ftData != null)
+                                {
+                                    DateTime faturaTarihi = ViewBag.ftData;
+                                    string faturaYil = faturaTarihi.Year.ToString();
+                                    string faturaAy = faturaTarihi.Month.ToString();
+                                    string faturaGun = faturaTarihi.Day.ToString();
+
+                                    if (Convert.ToInt32(faturaAy) < 10)
+                                    {
+                                        faturaAy = "0" + faturaAy;
+                                    }
+
+                                    if (Convert.ToInt32(faturaGun) < 10)
+                                    {
+                                        faturaGun = "0" + faturaGun;
+                                    }
+
+                                    string dateFatura = faturaYil + "-" + faturaAy + "-" + faturaGun;
+
+                                    <input type="date" name="faturatarihi" id="faturatarihi" class="form-control" value="@(dateFatura)" />
+
+                                }
+                                else
+                                {
+                                    <input type="date" name="faturatarihi" id="faturatarihi" class="form-control" />
+
+                                }
+                            }
+
+                        </div>
+
+
+                    </div>
+
+                    <div>
+                        Planlanan Zimmet Tarihi <input type="date" name="planlananzimmet" id="planlananzimmet" class="form-control horizontal-line" style="margin-left:10px"/>
+                        <br />
+                        <br />
+                        Planlanan İade Tarihi <input type="date" name="planlananiade" id="planlananiade" class="form-control horizontal-line" style="margin-left:33px" />
+                    </div>
+                    <br />
+                    <div>
+                        <label style="margin-right:7px">Zimmetlenecek Personel</label>
+                        <select onchange="selectedvalue()" name="zimmetlenecekpersonel" id="zimmetlenecekpersonel" class="form-control">
+                            @foreach (Personel item in Model.Personeller.Where(x=>x.AdSoyad != "Admin"))
+                            {
+                                <option value="@item.ID">@item.AdSoyad</option>
+                            }
+                        </select>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-save="modal">Zimmet İsteği Oluştur</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script language="JavaScript" type="text/javascript" src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="~/Scripts/jquery-ui-1.13.2.js"></script>
+
+<script>
+
+    function selectedvalue() {
+        e = document.getElementById("zimmetlenecekpersonel").value;
+    }
+
+</script>
+

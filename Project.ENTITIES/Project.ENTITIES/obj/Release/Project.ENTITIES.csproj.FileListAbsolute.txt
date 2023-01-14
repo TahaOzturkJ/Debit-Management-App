@@ -1,0 +1,12 @@
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.ENTITIES\bin\Release\Project.ENTITIES.dll.config
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.ENTITIES\bin\Release\Project.ENTITIES.dll
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.ENTITIES\bin\Release\Project.ENTITIES.pdb
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.ENTITIES\bin\Release\EntityFramework.dll
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.ENTITIES\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.ENTITIES\bin\Release\EntityFramework.xml
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.ENTITIES\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.ENTITIES\obj\Release\Project.ENTITIES.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.ENTITIES\obj\Release\Project.ENTITIES.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.ENTITIES\obj\Release\Project.ENTITIES.csproj.CopyComplete
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.ENTITIES\obj\Release\Project.ENTITIES.dll
+C:\Users\User\Desktop\CavoProje\Cavo Proje\Project.ENTITIES\Project.ENTITIES\obj\Release\Project.ENTITIES.pdb
