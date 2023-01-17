@@ -10,11 +10,15 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <style>
+    html {
+        overflow-y: scroll;
+    }
+
     body {
         position: relative;
         min-height: 100vh;
         width: 100%;
-        overflow: hidden;
+        overflow-x: hidden;
     }
 
     .sidebar {
@@ -289,8 +293,7 @@
         display: inline-block;
         width: 600px;
         min-height: 400px;
-        position: fixed;
-
+        position: absolute;
     }
 
     .baglienvanter {
@@ -299,7 +302,7 @@
     }
 
     .tumenvanter {
-        left: 800px;
+        left: 700px;
     }
 
     .tablelabel {
@@ -341,12 +344,12 @@
             <i class='bx bx-menu' id="btn"></i>
         </div>
         <ul class="nav_list">
-            <li>
+            @*<li>
                 <a href="#">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Dashboard</span>
                 </a>
-            </li>
+            </li>*@
             <li>
                 <a href="~/Panel/ITPanelEnvanter">
                     <i class='bx bx-user'></i>
@@ -359,7 +362,7 @@
                     <span class="links_name">Hareketler</span>
                 </a>
             </li>
-            <li>
+            @*<li>
                 <a href="#">
                     <i class='bx bxl-xing'></i>
                     <span class="links_name">İlişkiler</span>
@@ -376,7 +379,7 @@
                     <i class='bx bx-wrench'></i>
                     <span class="links_name">Onarım</span>
                 </a>
-            </li>
+            </li>*@
         </ul>
         <div class="profile_content">
             <div class="profile">

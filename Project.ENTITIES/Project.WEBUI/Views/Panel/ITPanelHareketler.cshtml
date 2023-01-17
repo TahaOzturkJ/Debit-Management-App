@@ -6,11 +6,15 @@
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 <style>
+    html {
+        overflow-y: scroll;
+    }
+
     body {
         position: relative;
         min-height: 100vh;
         width: 100%;
-        overflow: hidden;
+        overflow-x: hidden;
     }
 
     .sidebar {
@@ -277,12 +281,12 @@
             <i class='bx bx-menu' id="btn"></i>
         </div>
         <ul class="nav_list">
-            <li>
+            @*<li>
                 <a href="#">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Dashboard</span>
                 </a>
-            </li>
+            </li>*@
             <li>
                 <a href="ITPanelEnvanter">
                     <i class='bx bx-user'></i>
@@ -295,7 +299,7 @@
                     <span class="links_name">Hareketler</span>
                 </a>
             </li>
-            <li>
+            @*<li>
                 <a href="#">
                     <i class='bx bxl-xing'></i>
                     <span class="links_name">İlişkiler</span>
@@ -312,17 +316,31 @@
                     <i class='bx bx-wrench'></i>
                     <span class="links_name">Onarım</span>
                 </a>
-            </li>
+            </li>*@
         </ul>
         <div class="profile_content">
             <div class="profile">
                 <div class="profile_details">
                     <div class="name_job">
                         <div class="name">
-                            Taha Öztürk
+                            @if (@Session["LoggedPersonelName"] == null)
+                            {
+
+                            }
+                            else
+                            {
+                                @Session["LoggedPersonelName"].ToString()
+                            }
                         </div>
                         <div class="job">
-                            Back-end Developer
+                            @if (@Session["LoggedPersonelPosition"] == null)
+                            {
+
+                            }
+                            else
+                            {
+                                @Session["LoggedPersonelPosition"].ToString()
+                            }
                         </div>
                     </div>
                 </div>
@@ -384,6 +402,7 @@
                         <th>Marka/Model</th>
                         <th>Fatura No</th>
                         <th>Fatura Tarihi</th>
+                        <th>İşlemi Yapan Personel</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -400,6 +419,7 @@
                             <td>@item.Esya.Marka</td>
                             <td>@item.Esya.FaturaNo</td>
                             <td>@item.Esya.FaturaTarihi</td>
+                            <td>@item.IslemPersonel</td>
                         </tr>
                     }
                 </tbody>

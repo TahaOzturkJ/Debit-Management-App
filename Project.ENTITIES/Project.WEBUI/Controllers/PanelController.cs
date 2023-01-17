@@ -36,10 +36,17 @@ namespace Project.WEBUI.Controllers
         // GET: Panel
         public ActionResult ITPanelEnvanter()
         {
+            var bagliEsyalar = _eRep.Where(x => x.BagliEsyaID != 0);
+
+            if (bagliEsyalar != null)
+            {
+                ViewBag.bagliEsyaData = bagliEsyalar;
+
+            }
 
             IndexVM ivm = new IndexVM
             {
-                Esyalar = _eRep.Where(x => x.BagliEsyaID == 0),
+                Esyalar = _eRep.GetActives(),
                 ZimmetTipleri = _zRep.GetActives()
             };
 
@@ -152,9 +159,16 @@ namespace Project.WEBUI.Controllers
                 ivm.Esya.BagliEsyaID = 0;
             }
 
-            _eRep.Add(ivm.Esya);
+            if (_eRep.Any(x=>x.DemirbasNo == ivm.Esya.DemirbasNo))
+            {
+                Session["AddSuccess"] = "error";
+            }
+            else
+            {
+                _eRep.Add(ivm.Esya);
+                Session["AddSuccess"] = "success";
 
-            Session["AddSuccess"] = "success";
+            }
 
             return PartialView("AddItemPartial", ivm);
         }
@@ -292,7 +306,7 @@ namespace Project.WEBUI.Controllers
 
             Session["DebitSuccess"] = "success";
 
-            return PartialView("DebitItemPartial", ivm);
+            return PartialView("DebitItemPartial",ivm);
         }
 
 
@@ -497,6 +511,7 @@ namespace Project.WEBUI.Controllers
             ivm.Esya.GarantiBaslangicTarihi = garantibaslangic;
             ivm.Esya.GarantiBitisTarihi = garantibitis;
             ivm.Esya.FaturaTarihi = faturatarihi;
+            ivm.Esya.ZimmetleyenPersonel = Session["LoggedPersonel"].ToString();
 
             EsyaZimmetLog ezl = new EsyaZimmetLog()
             {
@@ -505,6 +520,7 @@ namespace Project.WEBUI.Controllers
                 EsyaID = ivm.Esya.ID,
                 PersonelID = ivm.Esya.PersonelID,
                 Aciklama = "Zimmet Girişi",
+                IslemPersonel = Session["LoggedPersonel"].ToString()
             };
 
             _ezlRep.Add(ezl);
@@ -575,6 +591,7 @@ namespace Project.WEBUI.Controllers
             ivm.Esya.GarantiBaslangicTarihi = garantibaslangic;
             ivm.Esya.GarantiBitisTarihi = garantibitis;
             ivm.Esya.FaturaTarihi = faturatarihi;
+            ivm.Esya.ZimmetleyenPersonel = null;
 
             EsyaZimmetLog ezl = new EsyaZimmetLog()
             {
@@ -583,6 +600,7 @@ namespace Project.WEBUI.Controllers
                 EsyaID = ivm.Esya.ID,
                 PersonelID = ivm.Esya.PersonelID,
                 Aciklama = "Demirbaş İadesi",
+                IslemPersonel = Session["LoggedPersonel"].ToString()
             };
 
             _ezlRep.Add(ezl);
@@ -590,7 +608,7 @@ namespace Project.WEBUI.Controllers
 
             Session["RefundSuccess"] = "success";
 
-            return PartialView("RefundItemPartial", ivm);
+            return PartialView("RefundItemPartial");
         }
 
         #endregion

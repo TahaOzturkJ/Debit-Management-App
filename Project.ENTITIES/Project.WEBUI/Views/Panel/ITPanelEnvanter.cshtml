@@ -10,11 +10,15 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <style>
+    html {
+        overflow-y: scroll;
+    }
+
     body {
         position: relative;
         min-height: 100vh;
         width: 100%;
-        overflow: hidden;
+        overflow-x: hidden;
     }
 
     .sidebar {
@@ -219,10 +223,11 @@
     }
 
     .home_content {
+        zoom: 90%;
         position: absolute;
         height: 100%;
-        width: calc(100%-78px);
-        left: 78px;
+        width: calc(100%-120px);
+        left: 120px;
         transition: all 0.5s ease;
     }
 
@@ -234,8 +239,8 @@
         }
 
     .sidebar.active ~ .home_content {
-        width: calc(100%-260px);
-        left: 260px;
+        width: calc(100%-340px);
+        left: 340px;
     }
 
     .horizontal-line {
@@ -252,6 +257,10 @@
         display: block;
         overflow-x: auto;
         white-space: nowrap
+    }
+
+    select{
+        width:200px !important;
     }
 
     th {
@@ -271,6 +280,10 @@
 
     }
 
+    input{
+        max-width: 200px;
+    }
+
 
 </style>
 
@@ -286,12 +299,12 @@
             <i class='bx bx-menu' id="btn"></i>
         </div>
         <ul class="nav_list">
-            <li>
+            @*<li>
                 <a href="#">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Dashboard</span>
                 </a>
-            </li>
+            </li>*@
             <li>
                 <a href="ITPanelEnvanter">
                     <i class='bx bx-user'></i>
@@ -304,7 +317,7 @@
                     <span class="links_name">Hareketler</span>
                 </a>
             </li>
-            <li>
+            @*<li>
                 <a href="#">
                     <i class='bx bxl-xing'></i>
                     <span class="links_name">İlişkiler</span>
@@ -321,7 +334,7 @@
                     <i class='bx bx-wrench'></i>
                     <span class="links_name">Onarım</span>
                 </a>
-            </li>
+            </li>*@
         </ul>
         <div class="profile_content">
             <div class="profile">
@@ -379,7 +392,7 @@
                 <input type="text" name="firma" id="firma" class="form-control" />
             </div>
             <div class="horizontal-line">
-                Demirbaş
+                Demirbaş No
                 <input type="text" name="demirbas" id="demirbas" class="form-control" />
             </div>
             <div class="horizontal-line">
@@ -451,11 +464,11 @@
                 <thead>
                     <tr>
                         <th>Demirbaş No</th>
+                        <th>Zimmet Durumu</th>
                         <th>Firma</th>
                         <th>Zimmet Tipi</th>
                         <th>Tip Açıklaması</th>
                         <th>Personel</th>
-                        <th>Statü</th>
                         <th>Bedel</th>
                         <th>Takma Ad</th>
                         <th>Seri No</th>
@@ -466,14 +479,40 @@
                         <th>Disk Tipi</th>
                         <th>Disk Kapasitesi</th>
                         <th>Ekran</th>
-                        <th colspan="3" style="text-align:center">İşlemler</th>
+                        <th colspan="1" style="text-align:center">İşlemler</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (Esya item in Model.Esyalar)
+                    @foreach (Esya item in Model.Esyalar.Where(x=>x.BagliEsyaID==0))
                     {
-                        <tr>
-                            <td>@item.DemirbasNo</td>
+                       <tr>
+                        <td>
+                            <button type="button" data-toggle="ajax-modal" data-target="#addItem" data-url="@Url.Action($"Edit/{item.ID}")" style="border:none; background-color:inherit;">@item.DemirbasNo</button>
+                        </td>
+                            @if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.Zimmetlendi)
+                            {
+                            <td style="color: green">@item.EsyaDurumu</td>
+                            }
+                            else if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.ZimmetPlanlandi)
+                            {
+                            <td style="color: red">@item.EsyaDurumu</td>
+                            }
+                            else if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.Boşta)
+                            {
+                            <td>
+                                <button type="button" data-toggle="ajax-modal" data-target="#addItem" data-url="@Url.Action($"Debit/{item.ID}")" style="border: none; color: blue; background-color:inherit;">@item.EsyaDurumu</button>
+                            </td>
+                            }
+                            else if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.IadeEdildi)
+                            {
+                            <td>
+                                <button type="button" data-toggle="ajax-modal" data-target="#addItem" data-url="@Url.Action($"Debit/{item.ID}")" style="border: none; color: blue; background-color:inherit; ">Boşta</button>
+                            </td>
+                            }
+                            else
+                            {
+                            <td>@item.EsyaDurumu</td>
+                            }
                             <td>@item.Sirket.SirketAdi</td>
                             <td>@item.ZimmetTip.ZimmetTipi</td>
                             <td>@item.ZimmetTip.Aciklama</td>
@@ -484,26 +523,6 @@
                             else
                             {
                                 <td>@item.Personel.AdSoyad</td>
-                            }
-                            @if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.Zimmetlendi)
-                            {
-                                <td style="color: green">@item.EsyaDurumu</td>
-                            }
-                            else if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.ZimmetPlanlandi)
-                            {
-                                <td style="color: red">@item.EsyaDurumu</td>
-                            }
-                            else if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.Boşta)
-                            {
-                                <td style="color: blue">@item.EsyaDurumu</td>
-                            }
-                            else if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.IadeEdildi)
-                            {
-                                <td style="color: purple">@item.EsyaDurumu</td>
-                            }
-                            else
-                            {
-                                <td>@item.EsyaDurumu</td>
                             }
                             <td>@item.Bedel</td>
                             <td>@item.TakmaAd</td>
@@ -516,25 +535,12 @@
                             <td>@item.DiskKapasitesi</td>
                             <td>@item.Ekran</td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addItem" data-url="@Url.Action($"Edit/{item.ID}")">Güncelle</button>
-                            </td>
-                            <td>
-                                @if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.ZimmetPlanlandi || item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.Zimmetlendi)
-                                {
-
-                                }
-                                else
-                                {
-                                    <button type="button" class="btn btn-success" data-toggle="ajax-modal" data-target="#addItem" data-url="@Url.Action($"Debit/{item.ID}")">Zimmetle</button>
-                                }
-                            </td>
-                            <td>
-                            <td>
                                 @Html.ActionLink("İlişkilendirme", "ITPanelIliskiler", new { id = item.ID }, new { @class = "btn btn-warning" })
                             </td>
-
                         </tr>
-                    }
+                    
+                        
+                     }
                 </tbody>
             </table>
         </div>
@@ -632,8 +638,6 @@
         else
         {
             Session["DebitSuccess"] = null;
-
-            @:swal("İşlem Başarısız!", "Demirbaşın Zimmet Planı Oluşturulamadı!", "error");
         }
         });
 

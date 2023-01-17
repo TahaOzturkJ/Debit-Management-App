@@ -48,6 +48,7 @@ namespace Project.ENTITIES.Models
         public DateTime? PlanlananIadeTarihi { get; set; }
         public DateTime? IadeTarihi { get; set; }
         public string IMEI { get; set; }
+        public string ZimmetleyenPersonel { get; set; }
 
 
         //Relational Properties

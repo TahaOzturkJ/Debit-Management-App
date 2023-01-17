@@ -2,6 +2,10 @@
 
 <style>
 
+    #addItem{
+        zoom:75%;
+    }
+
     .modalLabel {
         border:none;
     }
@@ -75,31 +79,31 @@
                         </div>
                     </div>
                     <div class="second">
-                        <div class="form-group  pclaptop hidden">
+                        <div class="form-group  pclaptop  horizontal-line">
                             @Html.LabelFor(x => x.Esya.CPU, new { @class = "form-control modalLabel" })
                             @Html.TextBoxFor(x => x.Esya.CPU, new { @class = "form-control" })
                         </div>
-                        <div class="form-group  pclaptop hidden">
+                        <div class="form-group  pclaptop horizontal-line">
                             @Html.LabelFor(x => x.Esya.Ram, new { @class = "form-control modalLabel" })
                             @Html.TextBoxFor(x => x.Esya.Ram, new { @class = "form-control" })
                         </div>
-                        <div class="form-group  pclaptop hidden">
+                        <div class="form-group  pclaptop horizontal-line">
                             @Html.Label("Ram Slot", new { @class = "form-control modalLabel" })
                             @Html.TextBoxFor(x => x.Esya.RamSlot, new { @class = "form-control" })
                         </div>
-                        <div class="form-group  pclaptop hidden">
+                        <div class="form-group  pclaptop horizontal-line">
                             @Html.LabelFor(x => x.Esya.Anakart, new { @class = "form-control modalLabel" })
                             @Html.TextBoxFor(x => x.Esya.Anakart, new { @class = "form-control" })
                         </div>
-                        <div class="form-group  pclaptop hidden">
+                        <div class="form-group  pclaptop horizontal-line">
                             @Html.Label("Disk Tipi", new { @class = "form-control modalLabel" })
                             @Html.TextBoxFor(x => x.Esya.DiskTipi, new { @class = "form-control" })
                         </div>
-                        <div class="form-group  pclaptop hidden">
+                        <div class="form-group  pclaptop horizontal-line">
                             @Html.Label("Disk Kapasitesi", new { @class = "form-control modalLabel" })
                             @Html.TextBoxFor(x => x.Esya.DiskKapasitesi, new { @class = "form-control" })
                         </div>
-                        <div class="form-group  laptop hidden">
+                        <div class="form-group  laptop horizontal-line">
                             @Html.LabelFor(x => x.Esya.Ekran, new { @class = "form-control modalLabel" })
                             @Html.TextBoxFor(x => x.Esya.Ekran, new { @class = "form-control" })
                         </div>
@@ -107,15 +111,15 @@
                             @Html.LabelFor(x => x.Esya.IP, new { @class = "form-control modalLabel" })
                             @Html.TextBoxFor(x => x.Esya.IP, new { @class = "form-control" })
                         </div>
-                        <div class="form-group horizontal-line">
+                        <div id="maceth" class="form-group horizontal-line">
                             @Html.LabelFor(x => x.Esya.MacETH, new { @class = "form-control modalLabel" })
-                            @Html.TextBoxFor(x => x.Esya.MacETH, new { @class = "form-control" })
+                            @Html.TextBoxFor(x => x.Esya.MacETH, new { @class = "form-control maceth", @maxlength = "17" })
                         </div>
                         <div class="form-group horizontal-line">
-                            @Html.LabelFor(x => x.Esya.MacWiFi, new { @class = "form-control modalLabel" })
+                            @Html.LabelFor(x => x.Esya.MacWiFi, new { @class = "form-control modalLabel", @maxlength="17" })
                             @Html.TextBoxFor(x => x.Esya.MacWiFi, new { @class = "form-control" })
                         </div>
-                        <div class="form-group phone hidden">
+                        <div class="form-group phone hidden horizontal-line">
                             @Html.LabelFor(x => x.Esya.IMEI, new { @class = "form-control modalLabel" })
                             @Html.TextBoxFor(x => x.Esya.IMEI, new { @class = "form-control" })
                         </div>
@@ -222,5 +226,22 @@
         }
 
     }
+
+    $('#maceth').keypress(function (e) {
+        var txt = String.fromCharCode(e.which);
+        if (!txt.match(/[A-Z0-9]/)) {
+            return false;
+        }
+    });
+
+    $('.maceth').keypress(function () {
+        var foo = $(this).val().split(":").join(""); // remove hyphens
+        if (foo.length > 0) {
+            foo = foo.match(new RegExp('.{1,2}', 'g')).join(":");
+        }
+        $(this).val(foo);
+    });
+
+
 
 </script>

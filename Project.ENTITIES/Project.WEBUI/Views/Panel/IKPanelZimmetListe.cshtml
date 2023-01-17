@@ -14,11 +14,15 @@
 
 
 <style>
+    html {
+        overflow-y: scroll;
+    }
+
     body {
         position: relative;
         min-height: 100vh;
         width: 100%;
-        overflow: hidden;
+        overflow-x: hidden;
     }
 
     .sidebar {
@@ -223,10 +227,11 @@
     }
 
     .home_content {
+        zoom:75%;
         position: absolute;
         height: 100%;
-        width: calc(100%-78px);
-        left: 78px;
+        width: calc(100%-120px);
+        left: 120px;
         transition: all 0.5s ease;
     }
 
@@ -238,8 +243,8 @@
         }
 
     .sidebar.active ~ .home_content {
-        width: calc(100%-260px);
-        left: 260px;
+        width: calc(100%-340px);
+        left: 340px;
     }
 
     .horizontal-line {
@@ -253,9 +258,14 @@
     }
 
     table {
+        zoom: 90%;
         display: block;
         overflow-x: auto;
         white-space: nowrap
+    }
+
+    select {
+        width: 209.6px !important;
     }
 
     th {
@@ -266,57 +276,6 @@
     .table {
         padding-top: 20px;
     }
-
-    /*    .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        background: rgba(0,0,0,0.548);
-    }
-
-    .modalinaltindakiform {
-        position: relative;
-        min-width: 30%;
-        min-height: 30%;
-        display: flex;
-        flex-direction: column;
-        background: white;
-        border-radius: 1.5rem;
-        font-size: 1.2rem;
-    }
-
-    .modalinaltindakiform input {
-            margin: 0.5rem 0;
-            padding: 0.5rem;
-            font-size: 1.2rem;
-    }
-
-    #form-buton {
-            background: #6c63ff;
-    }
-
-    #form-buton:hover {
-            background: #fa5369;
-    }
-
-    .modalkapat{
-            position:absolute;
-            right:0;
-            top:0;
-            background:gray;
-            padding:0.5rem;
-            border-bottom-left-radius: 1rem;
-            cursor:pointer;
-    }
-
-    .modalkapat:hover{
-            background: rgb(102, 102, 102);
-    }*/
 
 </style>
 
@@ -332,7 +291,7 @@
             <i class='bx bx-menu' id="btn"></i>
         </div>
         <ul class="nav_list">
-            <li>
+            @*<li>
                 <a href="#">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Dashboard</span>
@@ -367,7 +326,7 @@
                     <i class='bx bx-wrench'></i>
                     <span class="links_name">Onarım</span>
                 </a>
-            </li>
+            </li>*@
         </ul>
         <div class="profile_content">
             <div class="profile">
@@ -423,7 +382,7 @@
                 <input type="text" name="firma" id="firma" class="form-control" />
             </div>
             <div class="horizontal-line">
-                <label>Demirbaş Kodu</label>
+                <label>Demirbaş No</label>
                 <input type="text" name="demirbas" id="demirbas" class="form-control" />
             </div>
             <div class="horizontal-line">
@@ -459,83 +418,61 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th>Demirbaş No</th>
                         <th>Statü</th>
                         <th>Sicil No</th>
                         <th>Personel Ad-Soyad</th>
                         <th>Firma</th>
                         <th>Demirbaş Türü</th>
-                        <th>Demirbaş Kodu</th>
-                        <th>Demirbaş Adı</th>
+                        <th>Demirbaş Açıklama</th>
+                        <th>Takma Ad</th>
                         <th>Pl. Zimmet Tarihi</th>
                         <th>Zimmet Tarihi</th>
                         <th>Pl. İade Tarihi</th>
                         <th>İade Tarihi</th>
-                        <th>Açıklama</th>
-                        <th>Zimmetleyen Ad-Soyad</th>
-                        <th colspan="2" style="text-align:center">İşlemler</th>
+                        <th>Zimmetleyen Personel</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (Esya item in Model.Esyalar.Where(x=>x.BagliEsyaID == 0))
+                    @foreach (Esya item in Model.Esyalar.Where(x=>x.BagliEsyaID == 0 && ( x.EsyaDurumu==Project.ENTITIES.Enums.EsyaDurumu.ZimmetPlanlandi || x.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.Zimmetlendi) ))
                     {
-                        <tr>
-                            @if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.Zimmetlendi)
-                            {
-                                <td style="color: green">@item.EsyaDurumu</td>
-                            }
-                            else if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.ZimmetPlanlandi)
-                            {
-                                <td style="color: red">@item.EsyaDurumu</td>
-                            }
-                            else if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.Boşta)
-                            {
-                                <td style="color: blue">@item.EsyaDurumu</td>
-                            }
-                            else if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.IadeEdildi)
-                            {
-                                <td style="color: purple">@item.EsyaDurumu</td>
-                            }
-                            else
-                            {
-                                <td>@item.EsyaDurumu</td>
-                            }
-                            @if (item.Personel.AdSoyad == "Admin")
-                            {
-                                <td></td>
-                                <td></td>
-                            }
-                            else
-                            {
-                                <td>@item.Personel.SicilNo</td>
-                                <td>@item.Personel.AdSoyad</td>
-                            }
-                            <td>@item.Sirket.SirketAdi</td>
-                            <td>@item.ZimmetTip.ZimmetTipi</td>
-                            <td>@item.ZimmetTip.Aciklama</td>
-                            <td>@item.DemirbasNo</td>
-                            <td>@item.DemirbasAdi</td>
-                            <td>@item.PlanlananZimmetTarihi</td>
-                            <td>@item.ZimmetTarihi</td>
-                            <td>@item.PlanlananIadeTarihi</td>
-                            <td>@item.IadeTarihi</td>
-                            <td>ZIMMETLEYEN ADI (TODO)</td>
-                            @if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.ZimmetPlanlandi)
-                            {
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#addEmployee" data-url="@Url.Action($"DebitValidation/{item.ID}")">
-                                        Zimmeti Onayla
-                                    </button>
-                                </td>
-                            }
-                            else if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.Zimmetlendi)
-                            {
-                                <td>
-                                    <button type="button" class="btn btn-danger" data-toggle="ajax-modal" data-target="#addEmployee" data-url="@Url.Action($"Refund/{item.ID}")">
-                                        İade Al
-                                    </button>
-                                </td>
-                            }
-                        </tr>
+                    <tr>
+                        <td>@item.DemirbasNo</td>
+                        @if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.Zimmetlendi)
+                        {
+                            <td>
+                                <button type="button" data-toggle="ajax-modal" data-target="#addEmployee" data-url="@Url.Action($"Refund/{item.ID}")" style="border: none; color: green; background-color:inherit; ">@item.EsyaDurumu</button>
+                            </td>
+                        }
+                        else if (item.EsyaDurumu == Project.ENTITIES.Enums.EsyaDurumu.ZimmetPlanlandi)
+                        {
+                            <td>
+                                <button type="button" data-toggle="ajax-modal" data-target="#addEmployee" data-url="@Url.Action($"DebitValidation/{item.ID}")" style="border: none; color: red; background-color:inherit; ">
+                                    @item.EsyaDurumu
+                                </button>
+                            </td>
+                        }
+
+                        @if (item.Personel.AdSoyad == "Admin")
+                        {
+                            <td></td>
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td>@item.Personel.SicilNo</td>
+                            <td>@item.Personel.AdSoyad</td>
+                        }
+                        <td>@item.Sirket.SirketAdi</td>
+                        <td>@item.ZimmetTip.ZimmetTipi</td>
+                        <td>@item.ZimmetTip.Aciklama</td>
+                        <td>@item.DemirbasAdi</td>
+                        <td>@item.PlanlananZimmetTarihi</td>
+                        <td>@item.ZimmetTarihi</td>
+                        <td>@item.PlanlananIadeTarihi</td>
+                        <td>@item.IadeTarihi</td>
+                        <td>@item.ZimmetleyenPersonel</td>
+                    </tr>
                     }
                 </tbody>
             </table>

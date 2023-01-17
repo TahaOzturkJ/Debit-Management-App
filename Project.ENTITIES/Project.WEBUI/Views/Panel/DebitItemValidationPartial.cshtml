@@ -2,6 +2,11 @@
 
 
 <style>
+
+    #addItem {
+        zoom: 75%;
+    }
+
     .hidden{
         display:none;
     }
@@ -12,6 +17,10 @@
 
     .horizontal-line{
         display:inline-block;
+    }
+
+    input{
+        width:206.8px !important;
     }
 </style>
 
@@ -27,8 +36,8 @@
                     @Html.TextBoxFor(x => x.Esya.EsyaDurumu, new { @class = "form-control hidden" })
                     @Html.TextBoxFor(x => x.Esya.ZimmetTipID, new { @class = "form-control hidden" })
                     @Html.TextBoxFor(x => x.Esya.BagliEsyaID, new { @class = "form-control hidden" })
-                    @Html.DropDownListFor(x => x.Esya.PersonelID, new SelectList(ViewBag.personelData, "ID", "AdSoyad"), new { @class = "form-control hidden" })
-                    @Html.DropDownListFor(x => x.Esya.SirketID, new SelectList(ViewBag.sirketData, "ID", "SirketAdi"), new { @class = "form-control hidden" })
+                    @Html.TextBoxFor(x => x.Esya.PersonelID, new { @class = "form-control hidden" })
+                    @Html.TextBoxFor(x => x.Esya.SirketID, new { @class = "form-control hidden" })
                     @Html.TextBoxFor(x => x.Esya.PlanlananZimmetTarihi, new { @class = "form-control hidden" })
                     @Html.TextBoxFor(x => x.Esya.ZimmetTarihi, new { @class = "form-control hidden" })
                     @Html.TextBoxFor(x => x.Esya.PlanlananIadeTarihi, new { @class = "form-control hidden" })
@@ -37,6 +46,7 @@
                     @Html.TextBoxFor(x => x.Esya.DuzenlenmeTarihi, new { @class = "form-control hidden" })
                     @Html.TextBoxFor(x => x.Esya.SilinmeTarihi, new { @class = "form-control hidden" })
                     @Html.TextBoxFor(x => x.Esya.Statu, new { @class = "form-control hidden" })
+                    @Html.TextBoxFor(x => x.Esya.ZimmetleyenPersonel, new { @class = "form-control hidden" })
 
                     <div class="form-group horizontal-line">
                         @Html.Label("Takma Ad", new { @class = "form-control modalLabel" })

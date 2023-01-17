@@ -21,6 +21,8 @@ namespace Project.ENTITIES.Models
 
         public string Aciklama { get; set; }
 
+        public string IslemPersonel { get; set; }
+
         public DateTime IslemTarihi { get; set; }
 
         //Relational Properties
